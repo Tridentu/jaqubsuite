@@ -1,0 +1,19 @@
+[Global]
+IconName=internet-chat
+Name=JaqubSuite
+Comment=Tridentu-RK's official communication app
+DesktopEntry=jaqubsuite
+
+[Event/mailSent]
+Name=E-mail Sent
+Comment=Your message was successfully sent.
+Action=Popup
+Urgency=Normal
+
+
+[Event/mailSentFailed]
+Name=E-mail discarded.
+Comment=Your message failed to send.
+Action=Popup
+Urgency=High
+

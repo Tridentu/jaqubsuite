@@ -1,0 +1,13 @@
+<!DOCTYPE gui SYSTEM "kpartgui.dtd">
+<gui name="JaqubSuite"
+     version="3">
+    <MenuBar>
+        <Menu name="file">
+            <action name="new"/>
+        </Menu>
+        <Menu>
+            <text>Protocol</text>
+            
+        </Menu>
+    </MenuBar>
+</gui>

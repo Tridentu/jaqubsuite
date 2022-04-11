@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=JaqubSuite
+Comment=Tridentu-RK's official communication app
+Exec=/usr/bin/jaqubsuite
+GenericName=Communcations App
+Icon=internet-chat
+StartupNotify=true
+Terminal=false
+Type=Application
+Categories=Network
