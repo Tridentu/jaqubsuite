@@ -23,13 +23,15 @@ You will also need:
 
 - [SimpleMail](https://github.com/cutelyst/simple-mail)
 
--- Build instructions --
+## Build instructions 
 
+```shell
 cd /your/project/build
 cmake -DCMAKE_INSTALL_PREFIX=/usr ../
 make
 
 ./jaqubsuite
+```
 
 
 
