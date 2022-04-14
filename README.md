@@ -21,7 +21,7 @@ You need Qt5 and CMake 3.16 or higher
 
 You will also need:
 
-- [SimpleMail](https://github.com/cutelyst/simple-mail)
+- [SimpleMail(for SMTP) ](https://github.com/cutelyst/simple-mail)
 - [Mailio (for IMAP)](https://github.com/karastojko/mailio)
 
 ## Build instructions 
