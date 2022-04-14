@@ -31,6 +31,8 @@ void ConnectionDialog::setupDialog()
     connect(m_ui->passwordField, &KLineEdit::textChanged, this, &ConnectionDialog::setPassword);
     connect(m_ui->usernameField, &KLineEdit::textChanged, this, &ConnectionDialog::setUsername);
     connect(m_ui->buttonBox, &QDialogButtonBox::accepted, this, &ConnectionDialog::setConnectionStatic);
+    connect(m_ui->secondaryConnectionUriField, &KLineEdit::textChanged, this, &ConnectionDialog::setSecConnectionUrl);
+
     m_Connection.connectionType = m_ui->connectionTypeCB->currentText();
 }
 
@@ -67,8 +69,16 @@ QUrl ConnectionDialog::getConnectionUrl()
     return m_Connection.connectionUri;
 }
 
+void ConnectionDialog::setSecConnectionUrl()
+{
+    m_Connection.sConnectionUri = QUrl(m_ui->secondaryConnectionUriField->text());
+}
 
 
+QUrl ConnectionDialog::getSecConnectionUrl()
+{
+    return m_Connection.sConnectionUri;
+}
 
 JaqubConnection* ConnectionDialog::getConnection()
 {

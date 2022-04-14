@@ -68,6 +68,9 @@ void JaqubSuiteWindow::addConnectionWindow()
     if(plugin){
         qDebug() << "Logging in... ";
         plugin->login(m_Dialog->getConnectionUrl(), m_Dialog->getUserName(), m_Dialog->getPassword());
+        if (!m_Dialog->getSecConnectionUrl().isEmpty()){
+            plugin->loginSecondary(m_Dialog->getSecConnectionUrl(), m_Dialog->getUserName(), m_Dialog->getPassword());
+        }
     }
     QDialog* window = GetNewWindow(plugin->getUIType(), this,  m_Dialog->getConnection());
     switch(plugin->getUIType()){

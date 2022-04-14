@@ -3,6 +3,7 @@
 #include <KRichTextEdit>
 #include <KNotifications/KNotification>
 #include <KColorButton>
+#include <QTreeWidgetItem>
 #include "ui_connection_postal_window.h"
 
 ConnectionPostalWindow::ConnectionPostalWindow(QWidget* parent, JaqubConnection* connection) : QDialog(parent) , m_Ui(new Ui::ConnectionPostalWindow), m_Connection(connection)
@@ -32,8 +33,37 @@ void ConnectionPostalWindow::setPlugin(JaqubPlugin* plugin)
     if(m_Plugin)
         disconnect(plugin, &JaqubPlugin::messageSent, this, &ConnectionPostalWindow::notifyMessageSent);
     m_Plugin = plugin;
-    if(m_Plugin)
+    if(m_Plugin){
         connect(plugin, &JaqubPlugin::messageSent, this, &ConnectionPostalWindow::notifyMessageSent);
+        if (m_Plugin->isSecondaryAvailable()){
+            QList<QMap<QString, QString>> messageData = m_Plugin->receive();
+            QMap<QString, QTreeWidgetItem*> globalItemMap;
+            std::function<void(QList<QMap<QString, QString>>&, QString, QMap<QString, QTreeWidgetItem*>&)> aggregator = [&](QList<QMap<QString, QString>>& md, QString filter, QMap<QString, QTreeWidgetItem*>& itemMap){
+              for (auto& me: md){
+                    if(me["type"] == "folder"){
+                        QTreeWidgetItem* item;
+                        if (itemMap.contains(me["folderText"]))
+                            continue;
+                        if((!filter.isEmpty()) && filter == me["folderText"]){
+                            item = new QTreeWidgetItem(itemMap[me["folderText"]]);
+                        } else {
+                            item = new QTreeWidgetItem(m_Ui->foldersView);
+                        };
+                        item->setIcon(0, QIcon::fromTheme(QString("email")));
+                        item->setText(0, me["folderText"]);
+                        itemMap[me["folderText"]] = item;
+                        if(me.contains("parent"))
+                            aggregator(md, me["parent"], itemMap);
+                    }
+                }  
+                auto list = itemMap.values();
+                m_Ui->foldersView->insertTopLevelItems(0 , list);
+            };
+            if (messageData.size() > 0){
+                aggregator(messageData, QString::fromStdString(""), globalItemMap);
+            }
+        }
+    }
 
 }
 

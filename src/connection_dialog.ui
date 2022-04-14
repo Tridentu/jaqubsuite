@@ -55,7 +55,7 @@
     </rect>
    </property>
    <property name="currentIndex">
-    <number>1</number>
+    <number>3</number>
    </property>
    <widget class="QWidget" name="generalTab">
     <attribute name="icon">
@@ -218,6 +218,36 @@
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="tabSecondaryConnection">
+    <attribute name="icon">
+     <iconset theme="internet-chat"/>
+    </attribute>
+    <attribute name="title">
+     <string>S. Connection</string>
+    </attribute>
+    <widget class="KLineEdit" name="secondaryConnectionUriField">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>50</y>
+       <width>441</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="inputMethodHints">
+      <set>Qt::ImhNoEditMenu</set>
+     </property>
+     <property name="placeholderText">
+      <string>Secondary Connection URI</string>
+     </property>
+     <property name="clickMessage">
+      <string>Secondary Connection URI</string>
+     </property>
+     <property name="showClearButton" stdset="0">
+      <bool>true</bool>
      </property>
     </widget>
    </widget>

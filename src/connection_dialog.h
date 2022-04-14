@@ -21,7 +21,7 @@ public:
     QString getUserName();
     QString getPassword();
     QUrl getConnectionUrl();
-    
+    QUrl getSecConnectionUrl();
 private:
     void setConnectionType(const QString& text);
     void setConnectionName();
@@ -29,6 +29,7 @@ private:
     void setConnectionStatic();
     void setPassword();
     void setUsername();
+    void setSecConnectionUrl();
 private:
     void setupDialog();
     QScopedPointer<Ui::JaqubCreateConnectionDialog> m_ui;
